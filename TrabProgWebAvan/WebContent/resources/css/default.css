@@ -1,0 +1,15 @@
+.ui-widget, .ui-widget th, .ui-widget td {
+    font-size: 12px !important;
+}
+
+.acoes {
+	white-space: nowrap;
+}
+
+.acoes .ui-button-icon-only {
+	margin: 2px;
+}
+
+.espacamentoBotoes {
+	margin-left: 10px;
+}

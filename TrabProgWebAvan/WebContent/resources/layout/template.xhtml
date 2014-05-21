@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="UTF-8" />
+	
+	<title>TrabProgWebAvan</title>
+</h:head>
+
+<h:body styleClass="content">
+	<f:view contentType="text/html">
+		<link type="text/css" rel="stylesheet" href="#{resource['css/default.css']}" />
+
+		<noscript>Ative seu javaScript!</noscript>
+	
+		<ui:include src="/resources/layout/topo.xhtml" />
+
+		<p:growl id="growl" showDetail="true" life="10000" escape="false" />
+	
+		<ui:insert />
+	</f:view>
+</h:body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+	<datasource jndi-name="java:jboss/datasources/TPWADS" pool-name="TPWAPool">
+		<connection-url>jdbc:mysql://localhost:3306/tpwa</connection-url>
+		<driver>mysql-connector-java-5.1.6.jar</driver>
+		<pool>
+			<max-pool-size>20</max-pool-size>
+		</pool>
+		<security>
+			<user-name>root</user-name>
+			<password></password>
+		</security>
+	</datasource>
+</datasources>
