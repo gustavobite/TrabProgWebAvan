@@ -1,6 +1,7 @@
 package br.unisul.tpwa.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.unisul.tpwa.entity.enums.DivisaoLogica;
 
@@ -34,6 +37,14 @@ public class Modulo implements Serializable, Entidade{
 	
 	@Column(name="FG_DISPONIVEL")
 	private Boolean permanecerDisponivel;
+	
+	@Column(name = "DT_INICIAL")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date dataInicial;
+	
+	@Column(name = "DT_FINAL")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date dataFinal;
 	
 	@Column(name="CD_DIVISAO_LOG")
 	@Enumerated(EnumType.ORDINAL)
@@ -72,6 +83,22 @@ public class Modulo implements Serializable, Entidade{
 
 	public void setPermanecerDisponivel(Boolean permanecerDisponivel) {
 		this.permanecerDisponivel = permanecerDisponivel;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	public DivisaoLogica getDivisaoLogica() {

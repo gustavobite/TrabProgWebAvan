@@ -15,7 +15,11 @@
 					<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
 						<f:selectItem itemLabel="Selecione" />  
 					    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
-					</p:selectOneMenu> 
+					</p:selectOneMenu>
+					<p:outputLabel for="dataInicial" value="Início:" />
+        			<p:calendar id="dataInicial" value="#{moduloMB.entidade.dataInicial}"/>
+        			<p:outputLabel for="dataFinal" value="Término:" />
+        			<p:calendar id="dataFinal" value="#{moduloMB.entidade.dataFinal}"/>
 		        </p:panelGrid>
 		        <br/>
 				<p:commandButton value="Salvar" action="#{moduloMB.salvar()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-disk" />
