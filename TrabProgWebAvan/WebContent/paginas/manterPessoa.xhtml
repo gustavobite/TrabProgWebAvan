@@ -9,7 +9,7 @@
 		<h:form styleClass="divCadastro" rendered="#{!pessoaMB.pesquisa}">
 			<p:panel header="Cadastrar Pessoa">
 				<p:panelGrid columns="4" >
-					Nome pessoa: *<p:inputText value="#{pessoaMB.entidade.nome}" required="true" label="País"/>
+					Nome: *<p:inputText value="#{pessoaMB.entidade.nome}" required="true" label="País"/>
 		        </p:panelGrid>
 		        <br/>
 				<p:commandButton value="Salvar" action="#{pessoaMB.salvar()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-disk" />

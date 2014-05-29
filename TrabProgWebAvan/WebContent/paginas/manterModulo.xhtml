@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/resources/layout/template.xhtml">
+	
+	<p:outputPanel id="cadastro">
+		<h:form styleClass="divCadastro" rendered="#{!moduloMB.pesquisa}">
+			<p:panel header="Cadastrar Módulo">
+				<p:panelGrid columns="2" >
+					<p:outputLabel for="titulo" value="Título: " />
+					<p:inputText id="titulo" value="#{moduloMB.entidade.titulo}" required="true"/>
+					<p:outputLabel for="divisoes" value="Selecione divisão lógica: " />
+					<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
+						<f:selectItem itemLabel="Selecione" />  
+					    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
+					</p:selectOneMenu> 
+		        </p:panelGrid>
+		        <br/>
+				<p:commandButton value="Salvar" action="#{moduloMB.salvar()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-disk" />
+				<p:commandButton value="Ir Para Pesquisa" action="#{moduloMB.irParaPesquisa()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-search" styleClass="espacamentoBotoes" immediate="true"/>
+	        </p:panel>
+		</h:form>
+	</p:outputPanel>
+	
+	<br/>
+	
+	<p:outputPanel id="filtroPesquisa">
+		<h:form styleClass="divFiltroPesquisa" rendered="#{moduloMB.pesquisa}">
+			<p:panel header="Pesquisar Módulo">
+				<p:panelGrid columns="4" >
+					<p:outputLabel for="titulo" value="Título: *" />
+					<p:inputText id="titulo" value="#{moduloMB.entidadeFiltro.titulo}" />
+		        </p:panelGrid>
+		        <br/>
+				<p:commandButton value="Pesquisar" action="#{moduloMB.pesquisar()}" update=":pesquisa, :growl" icon="ui-icon-search" />
+				<p:commandButton value="Ir Para Cadastro" action="#{moduloMB.irParaCadastro()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-disk" styleClass="espacamentoBotoes"/>
+	        </p:panel>
+		</h:form>
+	</p:outputPanel>
+	
+	<br/>
+	
+	<p:outputPanel id="pesquisa">
+		<h:form styleClass="divPesquisa" rendered="#{moduloMB.pesquisa}" >
+			<p:dataTable id="itemTable" value="#{moduloMB.lista}" var="item" paginator="true" rows="7" 
+				paginatorAlwaysVisible="false" paginatorPosition="bottom" emptyMessage="Nenhum Registro Encontrado.">
+				<f:facet name="header">Lista de Módulos</f:facet>
+				<p:column headerText="Código" sortBy="#{item.id}" style="width:65px" styleClass="columnAutoCenter">#{item.id}</p:column>
+	            <p:column headerText="Título" sortBy="#{item.titulo}">#{item.titulo}</p:column>
+				<p:column headerText="Editar" style="width:40px" styleClass="acoes">
+			    	<p:commandButton action="#{moduloMB.irParaEdicao(item)}" title="Editar" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-pencil" />
+			    	<p:commandButton action="#{moduloMB.prepararEntidade(item)}" update=":exclusao" oncomplete="confirmDlg.show()" icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:outputPanel>
+	
+	<p:dialog id="confirmDialog" header="Excluir Pessoa" widgetVar="confirmDlg" width="350" height="75">
+		<h:form id="exclusao">
+			<h:panelGrid width="100%" columnClasses="columnAutoCenter">
+				<h:outputText value="Deseja realmente excluir?" />
+				<h:panelGroup>
+					<br/>
+					<p:commandButton value="Sim" action="#{moduloMB.excluir()}" update=":pesquisa, :growl" oncomplete="confirmDlg.hide();" />
+					<p:commandButton value="Não" onclick="confirmDlg.hide();" />
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>
