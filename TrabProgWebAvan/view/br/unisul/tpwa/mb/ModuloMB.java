@@ -29,6 +29,12 @@ public class ModuloMB extends ManterMB<Modulo, ModuloDAO> implements Serializabl
 		return moduloDAO;
 	}
 	
+	@Override
+	public void irParaCadastro() {
+		super.irParaCadastro();
+		
+	}
+	
 	public List<SelectItem> getDivisoesLogicas() {
 		List<SelectItem> divisoesLogicas = new ArrayList<SelectItem>();
 		for (DivisaoLogica dl : DivisaoLogica.values()) {
