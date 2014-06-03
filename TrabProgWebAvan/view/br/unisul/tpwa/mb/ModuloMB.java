@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
+import org.primefaces.event.FileUploadEvent;
+
 import br.unisul.tpwa.entity.Modulo;
 import br.unisul.tpwa.entity.Pessoa;
 import br.unisul.tpwa.entity.enums.DivisaoLogica;
@@ -34,6 +36,10 @@ public class ModuloMB extends ManterMB<Modulo, ModuloDAO> implements Serializabl
 		super.irParaCadastro();
 		
 	}
+	
+	public void handleFileUpload(FileUploadEvent event) {
+        System.out.println("baixou o arquivo");
+    }
 	
 	public List<SelectItem> getDivisoesLogicas() {
 		List<SelectItem> divisoesLogicas = new ArrayList<SelectItem>();

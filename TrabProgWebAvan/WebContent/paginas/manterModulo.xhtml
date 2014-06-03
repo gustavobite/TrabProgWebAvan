@@ -5,22 +5,40 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/resources/layout/template.xhtml">
 	
+	
 	<p:outputPanel id="cadastro">
 		<h:form styleClass="divCadastro" rendered="#{!moduloMB.pesquisa}">
 			<p:panel header="Cadastrar Módulo">
-				<p:panelGrid columns="2" >
-					<p:outputLabel for="titulo" value="Título: " />
-					<p:inputText id="titulo" value="#{moduloMB.entidade.titulo}" required="true"/>
-					<p:outputLabel for="divisoes" value="Selecione divisão lógica: " />
-					<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
-						<f:selectItem itemLabel="Selecione" />  
-					    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
-					</p:selectOneMenu>
-					<p:outputLabel for="dataInicial" value="Início:" />
-        			<p:calendar id="dataInicial" value="#{moduloMB.entidade.dataInicial}"/>
-        			<p:outputLabel for="dataFinal" value="Término:" />
-        			<p:calendar id="dataFinal" value="#{moduloMB.entidade.dataFinal}"/>
-		        </p:panelGrid>
+				<p:accordionPanel >
+			        <p:tab title="Dados Iniciais">
+			           <p:panelGrid columns="2" >
+								<p:outputLabel for="titulo" value="Título: " />
+								<p:inputText id="titulo" value="#{moduloMB.entidade.titulo}" required="true"/>
+								<p:outputLabel for="divisoes" value="Selecione divisão lógica: " />
+								<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
+									<f:selectItem itemLabel="Selecione" />  
+								    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
+								</p:selectOneMenu>
+								<p:outputLabel for="dataInicial" value="Início:" />
+			        			<p:calendar id="dataInicial" value="#{moduloMB.entidade.dataInicial}"/>
+			        			<p:outputLabel for="dataFinal" value="Término:" />
+			        			<p:calendar id="dataFinal" value="#{moduloMB.entidade.dataFinal}"/>
+				        </p:panelGrid>
+			        </p:tab>
+			        <p:tab title="Adição de recursos">
+			            <h:panelGrid columns="2" cellpadding="10">
+			                <p:fileUpload fileUploadListener="#{moduloMB.handleFileUpload}" mode="advanced" dragDropSupport="false"
+                 					 multiple="true" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+ 
+			            </h:panelGrid>
+			        </p:tab>
+			        <p:tab title="Informações Adicionais">
+			            <h:panelGrid columns="2" cellpadding="10">
+			                <h:outputText value="teste" />
+			            </h:panelGrid>
+			        </p:tab>
+			    </p:accordionPanel>
+				
 		        <br/>
 				<p:commandButton value="Salvar" action="#{moduloMB.salvar()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-disk" />
 				<p:commandButton value="Ir Para Pesquisa" action="#{moduloMB.irParaPesquisa()}" update=":cadastro, :filtroPesquisa, :pesquisa, :growl" icon="ui-icon-search" styleClass="espacamentoBotoes" immediate="true"/>

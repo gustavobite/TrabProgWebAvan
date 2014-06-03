@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -31,6 +32,12 @@ public class Recurso implements Entidade, Serializable {
 	@JoinColumn(name = "CD_MODULO", referencedColumnName = "CD_MODULO")
     @ManyToOne
     private Modulo modulo;
+	
+	@Transient
+	private String nome;
+	
+	@Transient
+	private String tipo;
 	
 	public Long getId() {
 		return id;
@@ -54,6 +61,22 @@ public class Recurso implements Entidade, Serializable {
 
 	public void setModulo(Modulo modulo) {
 		this.modulo = modulo;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
