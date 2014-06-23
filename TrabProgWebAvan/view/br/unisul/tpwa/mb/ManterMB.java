@@ -66,7 +66,7 @@ public abstract class ManterMB<E extends Entidade, DAO extends GenericoDAO<E>> e
 	
 	protected void onAntesPesquisar() {}
 	
-	protected void onAntesSalvar() {}
+	protected void onAntesSalvar() throws Exception {}
 	
 	protected void onAposSalvar() {}
 	

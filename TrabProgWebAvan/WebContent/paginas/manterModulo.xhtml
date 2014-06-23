@@ -7,28 +7,40 @@
 	
 	
 	<p:outputPanel id="cadastro">
-		<h:form styleClass="divCadastro" rendered="#{!moduloMB.pesquisa}">
+		<h:form enctype="multipart/form-data" styleClass="divCadastro" rendered="#{!moduloMB.pesquisa}">
 			<p:panel header="Cadastrar Módulo">
 				<p:accordionPanel >
 			        <p:tab title="Dados Iniciais">
 			           <p:panelGrid columns="2" >
 								<p:outputLabel for="titulo" value="Título: " />
 								<p:inputText id="titulo" value="#{moduloMB.entidade.titulo}" required="true"/>
-								<p:outputLabel for="divisoes" value="Selecione divisão lógica: " />
-								<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
-									<f:selectItem itemLabel="Selecione" />  
-								    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
-								</p:selectOneMenu>
 								<p:outputLabel for="dataInicial" value="Início:" />
 			        			<p:calendar id="dataInicial" value="#{moduloMB.entidade.dataInicial}"/>
 			        			<p:outputLabel for="dataFinal" value="Término:" />
 			        			<p:calendar id="dataFinal" value="#{moduloMB.entidade.dataFinal}"/>
+			        			<p:outputLabel for="divisoes" value="Selecione divisão lógica: " />
+								<p:selectOneMenu id="divisoes" value="#{moduloMB.entidade.divisaoLogica}" required="true" style="width: 130px">
+									<f:selectItem itemLabel="Selecione" />  
+								    <f:selectItems value="#{moduloMB.getDivisoesLogicas()}" var="divisao" itemValue="#{divisao}" itemLabel="#{divisao.name}" /> 
+								</p:selectOneMenu>
 				        </p:panelGrid>
+				        
+<!-- 				        <p:outputPanel id="Topicos"> -->
+<!-- 					        	<h3 style="margin-top: 0">Basic PickList 2</h3> -->
+<!--    								<p:pickList id="pickListTopicos" converter="primeFacesPickListConverter" value="#{moduloMB.topicos}" var="topicos" itemLabel="#{topicos.nome}" itemValue="#{topicos}" /> -->
+<!-- 						</p:outputPanel> -->
 			        </p:tab>
 			        <p:tab title="Adição de recursos">
 			            <h:panelGrid columns="2" cellpadding="10">
-			                <p:fileUpload fileUploadListener="#{moduloMB.handleFileUpload}" mode="advanced" dragDropSupport="false"
-                 					 multiple="true" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+			                <p:fileUpload fileUploadListener="#{moduloMB.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                 					fileLimit="3" invalidFileMessage="Tipo de arquivo não permitido" 
+						            invalidSizeMessage="Arquivo com tamanho acima do permitido" 
+						            uploadLabel="Enviar Arquivos" 
+						            cancelLabel="Cancelar"  
+						            label="Selecionar..." 
+						            multiple="false" 
+						            sizeLimit="10485760"
+                 					 allowTypes="/(\.|\/)(gif|jpe?g|rtf|odt|png|doc|docx|xls|xlsx|pps|ppsx|ppt|pptx|pdf|jpg|zip|txt|7z|rar)$/" />
  
 			            </h:panelGrid>
 			        </p:tab>
